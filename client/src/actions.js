@@ -59,10 +59,14 @@ export function getAuthenticated() {
 }
 
 export function clickMention(messageId, index) {
-    return dispatch => dispatch({
-        type: at.CLICK_MENTION,
-        payload: {messageId}
-    })
+    return dispatch => {
+        console.debug(messageId, index);
+        dispatch({
+
+            type: at.CLICK_MENTION,
+            payload: {messageId, index}
+        })
+    }
 }
 
 export function readMention(messageId) {
