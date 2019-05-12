@@ -1,3 +1,4 @@
+export var UPDATE_COUNT = "UPDATE_COUNT";
 export var READ_MENTION = "READ_MENTION";
 export var CLICK_MENTION = "CLICK_MENTION";
 export var RECV_MENTION = "RECV_MENTION";

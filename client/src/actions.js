@@ -13,7 +13,7 @@ let mychatToken = null;
 
 export function sendText(id, text) {
     return dispatch => {
-        return socket.send(JSON.stringify({fromToken: mychatToken, message: text}));
+        return socket.send(JSON.stringify({patchRequest: {op: "create", value: text}, fromToken: mychatToken}));
     };
 }
 
@@ -22,6 +22,7 @@ export function joinChat() {
     return dispatch => {
         socket.onmessage = msg => {
             const payload = JSON.parse(msg.data);
+            console.debug(payload);
             dispatch({
                 type: at.RECV_TEXT,
                 payload
@@ -55,6 +56,12 @@ export function getAuthenticated() {
                     payload: result.data
                 });
             });
+    }
+}
+
+export function readMessage(messageId) {
+    return dispatch => {
+        socket.send(JSON.stringify({patchRequest: {op: "read", target: messageId}, fromToken: mychatToken}))
     }
 }
 
